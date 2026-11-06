@@ -26,8 +26,8 @@ for this work already exists, use it and update its `plan.md`.
   input does not settle.
 - If the input is a rough idea (no clear problem or solution), suggest the
   `grill` skill first and stop.
-- Otherwise grill only the open decisions, using the `grilling` skill with
-  one question at a time (see the `grill` skill). No open decisions: no
+- Otherwise grill only the open decisions, the way the `grill` skill does
+  (`../grill/SKILL.md`: one question at a time). No open decisions: no
   questions.
 
 ## 4. Write plan.md

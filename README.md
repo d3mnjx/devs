@@ -33,11 +33,10 @@ with security and skeptic".
 
 | Skill | What it does |
 |---|---|
-| `grill` | Interviews you one question at a time until the idea is clear. Wraps `grilling`. |
+| `grill` | Interviews you one question at a time until the idea is clear. Uses Matt Pocock's `grilling` method (`skills/grill/grilling.md`). |
 | `plan` | Takes any input, grills only the open decisions, writes `plan.md`. |
 | `review` | Fresh reviewers → sort findings → apply clear fixes → step back verdict → your decisions. Works on the plan and on the code. |
 | `implement` | Builds from `plan.md`, runs the project checks until they pass, commits. |
-| `grilling` | The interview method. A copy of Matt Pocock's skill, unchanged. |
 
 ## Review
 
@@ -90,9 +89,9 @@ needs a harness that can start fresh subagents.
 
 ## Credits
 
-- `skills/grilling/` is copied unchanged from
+- `skills/grill/grilling.md` is copied unchanged from
   [mattpocock/skills](https://github.com/mattpocock/skills) at `4ae2317`, MIT
-  license (see `skills/grilling/LICENSE`).
+  license (see `skills/grill/grilling-LICENSE`).
 - The skeptic uses [Ponytail](https://github.com/DietrichGebert/ponytail).
 - The fresh reviewers and the finding labels come from Google's
   [Elephant-Goldfish Model](https://github.com/google/elephant-goldfish-model).
