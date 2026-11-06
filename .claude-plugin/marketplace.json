@@ -3,13 +3,13 @@
   "name": "devs",
   "description": "A small dev process with roles and fresh-context reviews.",
   "owner": {
-    "name": "d3mnjx",
-    "url": "https://github.com/d3mnjx"
+    "name": "urza",
+    "url": "https://github.com/urza"
   },
   "plugins": [
     {
       "name": "devs",
-      "description": "Grill, plan, review, implement, review, step back.",
+      "description": "Brainstorm, plan, review, implement, review, step back.",
       "source": "./",
       "category": "productivity"
     }

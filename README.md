@@ -71,7 +71,7 @@ Commit `.work/` or add it to `.gitignore`. Each project decides.
 ## Install (Claude Code)
 
 ```
-/plugin marketplace add d3mnjx/devs
+/plugin marketplace add urza/devs
 /plugin install devs@devs
 ```
 
@@ -86,6 +86,11 @@ Install it too:
 Other harnesses: the skills are plain `SKILL.md` files with no Claude Code tool
 names. Copy `skills/` into the harness's skills folder. The `review` skill
 needs a harness that can start fresh subagents.
+
+## Development
+
+`urza/devs` is the stable version that you install. Work happens in the fork
+`d3mnjx/devs` and reaches `urza/devs` through pull requests.
 
 ## Credits
 
