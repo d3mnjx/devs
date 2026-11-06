@@ -18,9 +18,10 @@ simpler, or should it be reverted?
 
 Rules:
 - Do not repeat the findings. Weigh them.
-- GO is a normal answer. Do not invent a change to seem useful. Recommend
-  CHANGE COURSE or STOP only when you can name the better option or the cost
-  that outweighs the value.
+- Judge hard. If the work is worth it as planned, GO is a valid verdict.
+  Never invent a change to have something to say. Recommend CHANGE COURSE
+  or STOP only when you can name the better option or the cost that
+  outweighs the value.
 - Read the code or docs when you need a fact to judge.
 
 Output, under 150 words:
