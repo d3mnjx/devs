@@ -1,0 +1,10 @@
+{
+  "name": "devs",
+  "version": "0.1.0",
+  "description": "A small dev process with roles: grill the idea, plan, review with fresh agents, implement, review again, and step back.",
+  "author": {
+    "name": "d3mnjx",
+    "url": "https://github.com/d3mnjx"
+  },
+  "license": "MIT"
+}

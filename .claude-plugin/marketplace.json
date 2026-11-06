@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "devs",
+  "description": "A small dev process with roles and fresh-context reviews.",
+  "owner": {
+    "name": "d3mnjx",
+    "url": "https://github.com/d3mnjx"
+  },
+  "plugins": [
+    {
+      "name": "devs",
+      "description": "Grill, plan, review, implement, review, step back.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
