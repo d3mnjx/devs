@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "devs",
-      "description": "Grill, plan, review, implement, review, step back.",
+      "description": "Brainstorm, plan, review, implement, review, step back.",
       "source": "./",
       "category": "productivity"
     }
