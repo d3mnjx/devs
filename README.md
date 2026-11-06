@@ -1,5 +1,9 @@
 # devs
 
+<p align="center">
+  <img src="assets/team.webp" alt="Illustration: the devs roles around a table full of plans and notes, while an older developer stands apart on a box and watches the whole scene" width="100%">
+</p>
+
 A small development process with roles, for AI coding agents. You brainstorm the
 idea, write a plan, review it with fresh agents, implement it, and review the
 code the same way. A "step back" agent asks if the work is worth it. You see
@@ -7,22 +11,16 @@ only the judgment calls.
 
 ## Flow
 
-```
- START (chat, issue, file, or spec)
-   ├─ rough idea ──► brainstorm ──┐
-   └─ specced ────────────────────┤
-                                  ▼
-                                plan ──► .work/<feature>/plan.md
-                                  ▼
-                           review (plan) ── stop ──► END
-                                  │ └──── change course ──► plan
-                                  ▼ go
-                              implement ──► checks pass, commit
-                                  ▼
-                           review (code) ── revert/stop ──► END
-                                  │ └──── simplify ──► implement or plan
-                                  ▼ go
-                                DONE (you merge)
+```mermaid
+flowchart LR
+    brainstorm["💬 brainstorm"] --> plan["📝 plan"] --> r1("🔍 review") --> implement["🔨 implement"] --> r2("🔍 review") --> ship(["🚀 ship"])
+
+    classDef think fill:#fef3c7,stroke:#d97706,color:#1f2937
+    classDef build fill:#d1fae5,stroke:#059669,color:#1f2937
+    classDef review fill:#e0e7ff,stroke:#4f46e5,color:#1f2937
+    class brainstorm,plan think
+    class implement build
+    class r1,r2 review
 ```
 
 Start each stage with its command (`/devs:brainstorm`, `/devs:plan`,
@@ -39,6 +37,17 @@ with security and skeptic".
 | `implement` | Builds from `plan.md`, runs the project checks until they pass, commits. |
 
 ## Review
+
+```mermaid
+flowchart LR
+    work["📄 your plan<br/>or code"] --> neutral["🧐 neutral"] & skeptic["✂️ skeptic"] & lenses["🛡️ security · ⚡ perf · 🎨 ux"]
+    neutral & skeptic & lenses --> stepback["🔭 step back:<br/>is it worth it?"] --> you(["🙋 you decide"])
+
+    classDef review fill:#e0e7ff,stroke:#4f46e5,color:#1f2937
+    classDef think fill:#fef3c7,stroke:#d97706,color:#1f2937
+    class neutral,skeptic,lenses review
+    class stepback think
+```
 
 - **Reviewers** run as fresh subagents with no chat history. `neutral` and
   `skeptic` always run. `security`, `performance`, and `ux` run when the change
