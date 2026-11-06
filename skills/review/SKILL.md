@@ -52,8 +52,8 @@ Give each reviewer this brief, and nothing from our conversation:
   > **title**, **severity** (Blocker / Major / Nit), **where** (file:line or
   > plan section), **problem** (a concrete case: this input or situation
   > leads to this wrong result), **fix** (the smallest one). No case, no
-  > finding. Nothing found: say "No findings" and what you checked.
-  > Change no files.
+  > finding. "No findings" is a normal, good answer: say it and what you
+  > checked. Do not invent issues to seem useful. Change no files.
 
 ## 4. Sort the findings
 
