@@ -3,8 +3,8 @@
   "name": "devs",
   "description": "A small dev process with roles and fresh-context reviews.",
   "owner": {
-    "name": "d3mnjx",
-    "url": "https://github.com/d3mnjx"
+    "name": "urza",
+    "url": "https://github.com/urza"
   },
   "plugins": [
     {
