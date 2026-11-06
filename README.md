@@ -1,6 +1,6 @@
 # devs
 
-A small development process with roles, for AI coding agents. You grill the
+A small development process with roles, for AI coding agents. You brainstorm the
 idea, write a plan, review it with fresh agents, implement it, and review the
 code the same way. A "step back" agent asks if the work is worth it. You see
 only the judgment calls.
@@ -9,23 +9,23 @@ only the judgment calls.
 
 ```
  START (chat, issue, file, or spec)
-   ├─ rough idea ──► grill ──┐
-   └─ specced ───────────────┤
-                             ▼
-                           plan ──► .work/<feature>/plan.md
-                             ▼
-                      review (plan) ── stop ──► END
-                             │ └──── change course ──► plan
-                             ▼ go
-                         implement ──► checks pass, commit
-                             ▼
-                      review (code) ── revert/stop ──► END
-                             │ └──── simplify ──► implement or plan
-                             ▼ go
-                           DONE (you merge)
+   ├─ rough idea ──► brainstorm ──┐
+   └─ specced ────────────────────┤
+                                  ▼
+                                plan ──► .work/<feature>/plan.md
+                                  ▼
+                           review (plan) ── stop ──► END
+                                  │ └──── change course ──► plan
+                                  ▼ go
+                              implement ──► checks pass, commit
+                                  ▼
+                           review (code) ── revert/stop ──► END
+                                  │ └──── simplify ──► implement or plan
+                                  ▼ go
+                                DONE (you merge)
 ```
 
-Start each stage with its command (`/devs:grill`, `/devs:plan`,
+Start each stage with its command (`/devs:brainstorm`, `/devs:plan`,
 `/devs:review`, `/devs:implement`) or in plain words, for example "review this
 with security and skeptic".
 
@@ -33,7 +33,7 @@ with security and skeptic".
 
 | Skill | What it does |
 |---|---|
-| `grill` | Interviews you one question at a time until the idea is clear. Uses Matt Pocock's `grilling` method (`skills/grill/grilling.md`). |
+| `brainstorm` | A two-way talk about the idea: the model brings options, opinions, and prior art, and grills you one question at a time until every decision is settled. Uses Matt Pocock's `grilling` method (`skills/brainstorm/grilling.md`). |
 | `plan` | Takes any input, grills only the open decisions, writes `plan.md`. |
 | `review` | Fresh reviewers → sort findings → apply clear fixes → step back verdict → your decisions. Works on the plan and on the code. |
 | `implement` | Builds from `plan.md`, runs the project checks until they pass, commits. |
@@ -89,9 +89,9 @@ needs a harness that can start fresh subagents.
 
 ## Credits
 
-- `skills/grill/grilling.md` is copied unchanged from
+- `skills/brainstorm/grilling.md` is copied unchanged from
   [mattpocock/skills](https://github.com/mattpocock/skills) at `4ae2317`, MIT
-  license (see `skills/grill/grilling-LICENSE`).
+  license (see `skills/brainstorm/grilling-LICENSE`).
 - The skeptic uses [Ponytail](https://github.com/DietrichGebert/ponytail).
 - The fresh reviewers and the finding labels come from Google's
   [Elephant-Goldfish Model](https://github.com/google/elephant-goldfish-model).

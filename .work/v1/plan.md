@@ -49,6 +49,10 @@ user sees only the judgment calls and a "step back" verdict.
 - **Summary**: verdict, escalated items one at a time, one count line.
   Rejected: full findings list in chat.
 - **Grill**: one question at a time on top of unchanged `grilling`.
+- **Brainstorm** (changed 2026-11-06): `grill` became `brainstorm`, a two-way
+  talk where the model also brings options and opinions; grilling is its
+  backbone. Rejected: separate `brainstorm` and `grill` commands (you must
+  pick a style before you know what the session needs).
 - **Models**: none hardcoded; each role uses the session model.
 
 ## Out of scope
@@ -67,7 +71,7 @@ the summary shows only the verdict, escalations and the count line.
 
 1. Plugin manifest and marketplace file.
 2. Copy `grilling` with its MIT license.
-3. Skills: `grill`, `plan`, `implement`, `review`.
+3. Skills: `brainstorm`, `plan`, `implement`, `review`.
 4. Persona files: neutral, skeptic, security, performance, ux, step-back.
 5. README, AGENTS.md, workspace README entry.
 6. Validate the plugin; dry-run on a real feature.

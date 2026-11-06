@@ -1,6 +1,6 @@
 ---
 name: plan
-description: Turn an idea, a grill conversation, an issue, a file, or a spec into plan.md for one feature. Grills the user only on decisions that are still open. Use when the user wants a plan, a design, or a spec for a change.
+description: Turn an idea, a brainstorm conversation, an issue, a file, or a spec into plan.md for one feature. Grills the user only on decisions that are still open. Use when the user wants a plan, a design, or a spec for a change.
 ---
 
 Write `plan.md` for one feature. The reviewers and the implementer read this
@@ -25,10 +25,10 @@ for this work already exists, use it and update its `plan.md`.
 - **Decisions are the user's.** List every decision the plan needs that the
   input does not settle.
 - If the input is a rough idea (no clear problem or solution), suggest the
-  `grill` skill first and stop.
-- Otherwise grill only the open decisions, the way the `grill` skill does
-  (`../grill/SKILL.md`: one question at a time). No open decisions: no
-  questions.
+  `brainstorm` skill first and stop.
+- Otherwise grill only the open decisions. Follow `../brainstorm/grilling.md`,
+  but ask one question at a time, each with your recommended answer. No open
+  decisions: no questions.
 
 ## 4. Write plan.md
 
