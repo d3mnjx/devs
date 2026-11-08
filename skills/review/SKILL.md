@@ -15,6 +15,10 @@ bring the user only the decisions that need them.
   **code**; else review the **plan**.
 - Plan target: `.work/<feature>/plan.md`.
 - Code target: `git diff <base-commit>...HEAD`, plus `plan.md` as the spec.
+- **Commit range** (the user names commits, for example "the last 7
+  commits"): `git diff <first>^..<last>`. The spec is the commit messages
+  and any plan or issue they point to. The report goes to
+  `.work/review-<first>..<last>/`.
 
 ## 2. Pick the reviewers
 
@@ -81,6 +85,9 @@ Rules:
 - Plan target: apply FIX items to `plan.md`.
 - Code target: apply FIX items to the code, run the project's checks, and
   commit them as "review fixes" with a pointer to the report.
+- **Report only:** when the code is already on the default branch, or the
+  user asks for a report, change nothing. FIX then means "clear and ready
+  to apply". Say so at the top of the report.
 
 ## 5. Write the report
 
@@ -106,8 +113,8 @@ Resolution: <what was changed | the evidence | the question and the user's answe
 ## 6. Step back
 
 Start one more **fresh subagent** with `personas/step-back.md`. Give it the
-`plan.md` path, the report path, and for code the output of
-`git diff --stat <base-commit>...HEAD`. Write its answer into the report's
+`plan.md` path (or the commit range), the report path, and for code the
+output of `git diff --stat` on the target. Write its answer into the report's
 "Step back" section.
 
 ## 7. Tell the user
