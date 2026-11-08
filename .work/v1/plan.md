@@ -72,6 +72,12 @@ user sees only the judgment calls and a "step back" verdict.
   stages (the user asked to type nothing between stages); chain only inside
   `start` (a stage run alone would still need typed commands).
 
+- **First real run** (changed 2026-11-08, on Yap): review takes a commit range
+  and has a report-only mode; neutral checks the plan's facts against the
+  code; implement leaves unrelated untracked files alone and records wrong
+  plan facts in `plan.md`. Rejected: a separate "audit" skill for merged
+  commits (the review steps are the same).
+
 ## Out of scope
 
 - Manifests for harnesses other than Claude Code.

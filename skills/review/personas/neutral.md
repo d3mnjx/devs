@@ -17,6 +17,9 @@ Also check the work against the user's coding principles in
   that is a Blocker: the plan is unclear.
 - Could a developer build this from `plan.md` alone, without asking? Name each
   place where they would have to guess.
+- Check each claim the plan makes about the code (a file, a line, a
+  behavior, a condition) against the code. Do not repeat a claim you did not
+  check. A wrong fact is a finding.
 - Does the solution solve the stated problem? Are steps missing between the
   current code and the result?
 - Do any decisions contradict each other, or contradict the code as it is?
