@@ -64,6 +64,26 @@ user sees only the judgment calls and a "step back" verdict.
   2026-11-06: direct text is stronger than "read this file"); review pastes
   the file into the neutral and skeptic briefs. Rejected: a session hook (Claude Code only, and
   active outside devs); copies in every file (drift).
+- **Skeptic and minimalist** (changed 2026-11-09): the Ponytail-based
+  reviewer is now `minimalist.md`. `skeptic.md` is a new open reviewer with
+  the user's old prompt, "read the plan and give me the cons". It runs on
+  every plan, has its own output contract, and the main session shows its
+  cons to the user unfiltered. Reason: in the Yap link-card run no reviewer
+  asked whether a 24-hour card refresh was needed; each stayed in its lane.
+  Rejected: adding the open prompt to the Ponytail reviewer (its "no vague
+  worries" rules would muzzle it, and the open prompt would blur the
+  cutter).
+- **Decision owners** (added 2026-11-09): each decision in `plan.md` is
+  tagged `(user)` or `(agent)`; `plan` lists the `(agent)` ones for the user
+  before the review. The tag protects nothing. It only routes: a finding
+  against a `(user)` decision always goes to the user. Rejected: `(user)`
+  decisions closed to review (the user wants to be checked too).
+- **Briefs** (added 2026-11-09): the main session adds nothing to a
+  reviewer's brief about what is settled or who chose it. Rejected: scope
+  notes "to save the reviewers time" (they silenced the right finding).
+- **Zero option** (added 2026-11-09): a decision that adds a mechanism must
+  reject "without it" first. Rejected: any alternative counts (a different
+  number hid the option of no mechanism).
 
 - **Chain** (added 2026-11-07): each skill loads the next one when it ends,
   and a `start` skill takes the input and runs the whole flow. It stops only

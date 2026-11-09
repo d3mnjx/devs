@@ -1,6 +1,6 @@
 ---
 name: review
-description: Review a plan or code with fresh-context reviewer personas (neutral, skeptic, and security, performance, or UX when needed), sort the findings, apply the clear fixes, get a step back verdict, and show the user only the judgment calls. Use when the user wants a review, e.g. "review the plan" or "review this with security and skeptic".
+description: Review a plan or code with fresh-context reviewer personas (neutral, minimalist, skeptic, and security, performance, or UX when needed), sort the findings, apply the clear fixes, get a step back verdict, and show the user the skeptic's cons and the judgment calls. Use when the user wants a review, e.g. "review the plan" or "review this with security and skeptic".
 ---
 
 You are the main session. You keep the context; the reviewers do not.
@@ -24,7 +24,10 @@ bring the user only the decisions that need them.
 
 Persona files are in `personas/` next to this file.
 
-- **Always:** `neutral.md`, `skeptic.md`.
+- **Always:** `neutral.md`, `minimalist.md`.
+- **On every plan; on code only when the user names it:** `skeptic.md`. It
+  gives the cons of the whole thing. A bad plan is cheapest to stop before
+  the build.
 - **When the target touches the area, or the user names it:**
   - `security.md`: input from users, network, or files; auth; permissions;
     secrets; crypto; shell commands; new dependencies.
@@ -51,8 +54,10 @@ Give each reviewer this brief, and nothing from our conversation:
   (for example `../../principles.md`), paste that file's text too. The
   reviewer cannot resolve paths relative to the persona file.
 - The target: the `plan.md` path, or the diff command and `plan.md` path.
-  The reviewer may read any file in the repo.
-- This output contract:
+  The reviewer may read any file in the repo, except the skeptic on a
+  plan: give it the `plan.md` path only.
+- This output contract (the skeptic's file has its own; use that one for
+  the skeptic):
 
   > Return findings only, most severe first, under 400 words. For each:
   > **title**, **severity** (Blocker / Major / Nit), **where** (file:line or
@@ -62,16 +67,27 @@ Give each reviewer this brief, and nothing from our conversation:
   > checked. That is a valid result. Never invent an issue to have
   > something to report. Change no files.
 
+Add nothing else to a brief. Do not tell a reviewer what is settled, what the
+user chose, or what not to question. No decision is protected from review,
+the user's included.
+
+<!-- In the Yap link-card run (2026-11-09) the main session added "decisions
+were chosen by the user; do not propose cutting a whole decision" to the
+briefs. That was false for a value the agent had picked, and it silenced the
+one reviewer whose job was to ask if the thing should exist. -->
+
 ## 4. Sort the findings
 
 Merge findings that describe the same problem into one entry, and keep all
 reviewer names on it. Then, for each finding, **open the cited code or plan
-section first**. Never label from the reviewer's text alone. Give one label:
+section first**. Never label from the reviewer's text alone. The skeptic's
+cons are not sorted here; see "The skeptic's cons" below. Give one label:
 
 - **FIX**: the finding is right and the fix is clear. Apply it.
 - **CONTEST**: the finding is wrong. Cite evidence anyone can check: a file
   and line, a test, a decision in `plan.md`. "It is on purpose" is not
-  evidence.
+  evidence, and a decision is not evidence against a finding that attacks
+  that same decision.
 - **ESCALATE**: the finding needs the user's knowledge or a judgment call
   (scope, product, trade-off, cost). Write it as a question with your
   recommended answer.
@@ -82,12 +98,26 @@ Rules:
 - Keep the reviewer's severity. If you disagree, CONTEST with reasons.
 - FIX vs. ESCALATE: a fix that changes what the user gets, or costs real
   time, is ESCALATE. A fix that only makes the work correct is FIX.
+- A finding against a `(user)` decision is always ESCALATE. Never apply it,
+  contest it, or decline it yourself: the user asked to be checked too.
+  Give the user the reviewer's cost and cheaper option, not a softer
+  version.
+- When a finding says a mechanism costs too much, do not only make it
+  cheaper. First answer whether the mechanism is needed at all.
 - Plan target: apply FIX items to `plan.md`.
 - Code target: apply FIX items to the code, run the project's checks, and
   commit them as "review fixes" with a pointer to the report.
 - **Report only:** when the code is already on the default branch, or the
   user asks for a report, change nothing. FIX then means "clear and ready
   to apply". Say so at the top of the report.
+
+### The skeptic's cons
+
+Do not label, filter, merge, or reword the cons. You wrote or steered the
+work, so you are a biased judge of them. Copy each con into the report as
+written, and add one line of your own under it: "Agree: <what would
+change>" or "Disagree: <evidence anyone can check>". Change nothing for a
+con until the user says so.
 
 ## 5. Write the report
 
@@ -97,11 +127,16 @@ exists, append a new `# Round N` section; do not delete the old round.
 ```markdown
 # Round 1 (YYYY-MM-DD)
 
-Reviewers: neutral, skeptic, security (reason: parses uploaded files)
+Reviewers: neutral, minimalist, skeptic, security (reason: parses uploaded files)
 
 ## Step back
 Verdict: GO | CHANGE COURSE | STOP
 <the step back agent's text>
+
+## Skeptic's cons
+1. <the con, as the skeptic wrote it, with where and price>
+   Answer: Agree: <what would change> | Disagree: <evidence>
+   User: <the user's decision, filled in at step 7>
 
 ## Findings
 ### 1. <title>: <severity>, <LABEL>
@@ -114,21 +149,25 @@ Resolution: <what was changed | the evidence | the question and the user's answe
 
 Start one more **fresh subagent** with `personas/step-back.md`. Give it the
 `plan.md` path (or the commit range), the report path, and for code the
-output of `git diff --stat` on the target. Write its answer into the report's
-"Step back" section.
+output of `git diff --stat` on the target. The rule from step 3 holds here
+too: add nothing about what is settled or what the user chose. Write its
+answer into the report's "Step back" section.
 
 ## 7. Tell the user
 
-Keep it to about 15 lines:
+Keep it short:
 
 1. **Step back verdict** with its 1 or 2 lines of why.
 2. **One count line:** "Fixed N, contested N, declined N, escalated N" and
    the report path.
-3. **Escalated items, one at a time:** the question and your recommended
+3. **The skeptic's cons**, all of them, one line each, with your one-line
+   answer. Ask once: "Which of these should change the work?" Wait. Apply
+   what the user picks, and record the answer in the report.
+4. **Escalated items, one at a time:** the question and your recommended
    answer, worded so "yes" accepts it. Wait for each answer. Apply it, and
    record it in the report.
 
-Then act on the verdict, after all escalations have answers:
+Then act on the verdict, after the cons and all escalations have answers:
 
 - Plan review GO: load the `implement` skill, unless the user asked for the
   review only.

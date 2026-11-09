@@ -30,7 +30,7 @@ build. It never merges or pushes.
 
 You can also start any stage alone with its command (`/devs:brainstorm`,
 `/devs:plan`, `/devs:review`, `/devs:implement`) or in plain words, for
-example "review this with security and skeptic". Say "only the review" to
+example "review this with security and minimalist". Say "only the review" to
 stop after that stage.
 
 ## Skills
@@ -47,18 +47,27 @@ stop after that stage.
 
 ```mermaid
 flowchart LR
-    work["📄 your plan<br/>or code"] --> neutral["🧐 neutral"] & skeptic["✂️ skeptic"] & lenses["🛡️ security · ⚡ perf · 🎨 ux"]
-    neutral & skeptic & lenses --> stepback["🔭 step back:<br/>is it worth it?"] --> you(["🙋 you decide"])
+    work["📄 your plan<br/>or code"] --> neutral["🧐 neutral"] & minimalist["✂️ minimalist"] & skeptic["👎 skeptic:<br/>the cons"] & lenses["🛡️ security · ⚡ perf · 🎨 ux"]
+    neutral & minimalist & skeptic & lenses --> stepback["🔭 step back:<br/>is it worth it?"] --> you(["🙋 you decide"])
 
     classDef review fill:#e0e7ff,stroke:#4f46e5,color:#1f2937
     classDef think fill:#fef3c7,stroke:#d97706,color:#1f2937
-    class neutral,skeptic,lenses review
+    class neutral,minimalist,skeptic,lenses review
     class stepback think
 ```
 
 - **Reviewers** run as fresh subagents with no chat history. `neutral` and
-  `skeptic` always run. `security`, `performance`, and `ux` run when the change
-  touches that area or when you ask.
+  `minimalist` always run. `security`, `performance`, and `ux` run when the
+  change touches that area or when you ask.
+- **Skeptic.** One more fresh agent gets a single job: read the plan and
+  give the cons, the reasons why this is bad. It has no checklist and no
+  protected decisions. It runs on every plan, and on code when you ask. The
+  main session does not filter its list: you see every con with a one-line
+  answer, and you pick what changes.
+- **Nobody is protected.** `plan.md` tags each decision `(user)` or
+  `(agent)`. Before the review, `plan` lists the `(agent)` decisions for you
+  in plain words. Reviewers question both kinds. A finding against one of
+  your own decisions always comes back to you as a question.
 - **Persona files** are in `skills/review/personas/`. Each has an "On a plan"
   and an "On code" section, plus "Tuning notes" for your own rules.
 - **Sorting.** The main session opens the cited code and labels each finding:
@@ -68,8 +77,8 @@ flowchart LR
   - DECLINE: right but too small to matter.
 - **Step back.** One more fresh agent reads the plan and the findings and says
   GO, CHANGE COURSE, or STOP.
-- **You see** the verdict, one count line, and the escalated questions one at
-  a time. The details are in `.work/<feature>/plan-review.md` or
+- **You see** the verdict, one count line, the skeptic's cons, and the
+  escalated questions one at a time. The details are in `.work/<feature>/plan-review.md` or
   `code-review.md`.
 
 ## Coding principles
@@ -77,8 +86,8 @@ flowchart LR
 `skills/principles.md` holds your coding principles: simplicity,
 maintainability, understandability, elegance, and comments that explain why.
 `plan` and `implement` carry a copy inline, and `review` pastes it into the
-neutral and skeptic reviewers' briefs. Security,
-performance, ux, and step back do not, so they stay in their own lanes. A
+neutral and minimalist reviewers' briefs. Security,
+performance, ux, skeptic, and step back do not, so they stay in their own lanes. A
 project's own AGENTS.md or CLAUDE.md wins where it differs.
 
 ## Files per feature
@@ -114,8 +123,8 @@ needs a harness that can start fresh subagents.
 - `skills/brainstorm/grilling.md` is copied unchanged from
   [mattpocock/skills](https://github.com/mattpocock/skills) at `4ae2317`, MIT
   license (see `skills/brainstorm/grilling-LICENSE`).
-- `skills/review/personas/skeptic.md` adapts the review rules of
+- `skills/review/personas/minimalist.md` adapts the review rules of
   [Ponytail](https://github.com/DietrichGebert/ponytail) by Dietrich Gebert,
-  MIT license (see `skills/review/personas/skeptic-LICENSE`).
+  MIT license (see `skills/review/personas/minimalist-LICENSE`).
 - The fresh reviewers and the finding labels come from Google's
   [Elephant-Goldfish Model](https://github.com/google/elephant-goldfish-model).
