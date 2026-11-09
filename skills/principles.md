@@ -8,10 +8,11 @@ project's rules win.
 - plan/SKILL.md and implement/SKILL.md hold inline copies (direct text is
   followed more reliably than "read this file"). plan leaves out the comments
   part, because it writes no code. Keep the copies the same as this file.
-- neutral.md and skeptic.md point here, and review pastes this file into
+- neutral.md and minimalist.md point here, and review pastes this file into
   their briefs, so the reviewers also get direct text.
 - security, performance, ux, and step back do not get it, so they stay in
-  their own lanes. To add a reviewer, copy the pointer line into its file. -->
+  their own lanes. skeptic does not get it either: it has no lane and no
+  rules on purpose. To add a reviewer, copy the pointer line into its file. -->
 
 ## Core values
 

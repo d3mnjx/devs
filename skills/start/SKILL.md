@@ -20,7 +20,9 @@ questions.
 ## 2. Pick the first stage
 
 - A rough idea (no clear problem or solution): `brainstorm`.
-- A clear problem and solution (a good issue, a spec): `plan`.
+- A clear problem and solution (a good issue, a spec): `plan`. A skipped
+  brainstorm skips no questions: every open point you would have raised
+  there goes to the plan stage.
 - An existing feature folder:
 
   | Last file in the folder | Next stage |
@@ -41,8 +43,9 @@ session, with the feature folder as input. Do not wait for the user.
 
 Stop and wait for the user only when:
 
-- a skill asks the user a question (brainstorm, plan grilling, review
-  escalations). Continue after the answer.
+- a skill asks the user a question (brainstorm, plan grilling, the plan's
+  `(agent)` decisions, the skeptic's cons, review escalations). Continue
+  after the answer.
 - the step back verdict is CHANGE COURSE or STOP.
 - `implement` stops on a failure or a wrong plan.
 
