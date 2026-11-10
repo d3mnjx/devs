@@ -19,6 +19,10 @@ bring the user only the decisions that need them.
   commits"): `git diff <first>^..<last>`. The spec is the commit messages
   and any plan or issue they point to. The report goes to
   `.work/review-<first>..<last>/`.
+- **An open round.** If the last round in the report has no `Status: done`
+  line, an earlier session stopped before the user answered. Do not start a
+  new round. Continue that one: at step 6 when its "Step back" section is
+  empty, else at step 7 with the items that have no user answer.
 
 ## 2. Pick the reviewers
 
@@ -37,6 +41,14 @@ Persona files are in `personas/` next to this file.
     messages, docs.
 - The user can name any persona in plain words. A name with no file becomes a
   one-line brief from the user's words.
+- **Small path** (`plan.md` has a `Path: small` line), code target:
+  `neutral.md` only, plus any persona the user names, and no step back
+  (skip step 6). The user chose the short way for a small change.
+
+<!-- Why a small path: in the Yap review-fixes run (2026-11-08) five nit
+fixes, 49 lines in all, got a plan review and a code review with 8 agents,
+after 6 more for the review that found the nits. The full set of reviewers
+is for work that carries a design. -->
 
 Tell the user the list in one line, with the reason for each conditional one.
 
@@ -98,6 +110,14 @@ Rules:
 - Keep the reviewer's severity. If you disagree, CONTEST with reasons.
 - FIX vs. ESCALATE: a fix that changes what the user gets, or costs real
   time, is ESCALATE. A fix that only makes the work correct is FIX.
+- FIX only corrects or removes. A fix that adds something new (a mechanism
+  that runs by itself, an option, a dependency, a new part) is ESCALATE,
+  however clear it looks. Ask the user, with "without it" as one of the
+  options.
+  <!-- In the Yap link-card run (2026-11-09) a plan-review FIX added a
+  download gate with no question. The gate then caused three code-review
+  findings, two of them Major. A reviewer's fix gets no review of its own
+  (one round only), so the user is the only check on what it adds. -->
 - A finding against a `(user)` decision is always ESCALATE. Never apply it,
   contest it, or decline it yourself: the user asked to be checked too.
   Give the user the reviewer's cost and cheaper option, not a softer
@@ -131,7 +151,12 @@ Reviewers: neutral, minimalist, skeptic, security (reason: parses uploaded files
 
 ## Step back
 Verdict: GO | CHANGE COURSE | STOP
-<the step back agent's text>
+Why: <the step back agent's text>
+Instead: <only for CHANGE COURSE or STOP>
+Remarks:
+1. <the remark, as the step back agent wrote it>
+   Answer: Agree: <what would change> | Disagree: <evidence>
+   User: <the user's decision, filled in at step 7>
 
 ## Skeptic's cons
 1. <the con, as the skeptic wrote it, with where and price>
@@ -145,6 +170,10 @@ Finding: <one or two lines>
 Resolution: <what was changed | the evidence | the question and the user's answer | why declined>
 ```
 
+The round stays open until the user has answered at step 7. Write no
+`Status:` line here; step 7 adds it. `start` and a later `review` read a
+round without that line as not finished.
+
 ## 6. Step back
 
 Start one more **fresh subagent** with `personas/step-back.md`. Give it the
@@ -153,6 +182,19 @@ output of `git diff --stat` on the target. The rule from step 3 holds here
 too: add nothing about what is settled or what the user chose. Write its
 answer into the report's "Step back" section.
 
+Treat its remarks like the skeptic's cons: copy each one as written, add
+your one-line "Agree" or "Disagree" answer under it, and change nothing for
+a remark until the user says so.
+
+<!-- In the Yap runs step back said GO six times of six, and five of those
+texts held a point that no reviewer made. A GO moved the chain on, so the
+point reached nobody: "fix 5... You can drop it" was built anyway, and the
+remark about card pictures in the upload decode queue came back as a Major
+finding in the code review. The verdict alone is too narrow a pipe. -->
+
+Small path, code target: there is no step back. Leave the "Step back"
+section out of the report.
+
 ## 7. Tell the user
 
 Keep it short:
@@ -160,19 +202,22 @@ Keep it short:
 1. **Step back verdict** with its 1 or 2 lines of why.
 2. **One count line:** "Fixed N, contested N, declined N, escalated N" and
    the report path.
-3. **The skeptic's cons**, all of them, one line each, with your one-line
-   answer. Ask once: "Which of these should change the work?" Wait. Apply
-   what the user picks, and record the answer in the report.
+3. **The skeptic's cons and the step back remarks**, all of them, as
+   written, each with your one-line answer. Ask once for both lists: "Which
+   of these should change the work?" Wait. Apply what the user picks, and
+   record the answer in the report. A GO verdict does not answer a remark;
+   only the user does. No cons and no remarks: no question.
 4. **Escalated items, one at a time:** the question and your recommended
    answer, worded so "yes" accepts it. Wait for each answer. Apply it, and
    record it in the report.
 
-Then act on the verdict, after the cons and all escalations have answers:
+When the cons, the remarks, and all escalations have answers, add
+`Status: done` as the last line of the round. Then act on the verdict:
 
 - Plan review GO: load the `implement` skill, unless the user asked for the
   review only.
-- Code review GO: done. Tell the user the branch is ready to merge. Never
-  merge or push.
+- Code review GO, or a small path review with no verdict: done. Tell the
+  user the branch is ready to merge. Never merge or push.
 - CHANGE COURSE or STOP: stop and ask the user. Recommend `plan`,
   `implement`, or an end. The verdict is advice; the user decides.
 
