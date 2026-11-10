@@ -33,9 +33,7 @@ Rules:
   costs to leave as it is. The user gets each remark as you wrote it and
   answers it. "None" is a valid answer. Never invent a remark.
 
-<!-- Remarks exist because the verdict was too narrow. In the Yap runs every
-verdict was GO, and the useful points ("You can drop fix 5") sat in the
-"Why" text, where a GO let the chain pass them by. -->
+<!-- Why remarks are apart from "Why": see the note in ../SKILL.md, step 6. -->
 
 Output, under 200 words:
 

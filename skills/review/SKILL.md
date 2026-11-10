@@ -22,7 +22,7 @@ bring the user only the decisions that need them.
 - **An open round.** If the last round in the report has no `Status: done`
   line, an earlier session stopped before the user answered. Do not start a
   new round. Continue that one: at step 6 when its "Step back" section is
-  empty, else at step 7 with the items that have no user answer.
+  there but empty, else at step 7 with the items that have no user answer.
 
 ## 2. Pick the reviewers
 
@@ -42,8 +42,8 @@ Persona files are in `personas/` next to this file.
 - The user can name any persona in plain words. A name with no file becomes a
   one-line brief from the user's words.
 - **Small path** (`plan.md` has a `Path: small` line), code target:
-  `neutral.md` only, plus any persona the user names, and no step back
-  (skip step 6). The user chose the short way for a small change.
+  `neutral.md` only, plus any persona the user names. The user chose the
+  short way for a small change.
 
 <!-- Why a small path: in the Yap review-fixes run (2026-11-08) five nit
 fixes, 49 lines in all, got a plan review and a code review with 8 agents,
@@ -108,12 +108,10 @@ cons are not sorted here; see "The skeptic's cons" below. Give one label:
 
 Rules:
 - Keep the reviewer's severity. If you disagree, CONTEST with reasons.
-- FIX vs. ESCALATE: a fix that changes what the user gets, or costs real
-  time, is ESCALATE. A fix that only makes the work correct is FIX.
-- FIX only corrects or removes. A fix that adds something new (a mechanism
-  that runs by itself, an option, a dependency, a new part) is ESCALATE,
-  however clear it looks. Ask the user, with "without it" as one of the
-  options.
+- FIX vs. ESCALATE: a FIX only corrects or removes. A fix that adds a
+  mechanism, an option, or a dependency, that changes what the user gets,
+  or that costs real time is ESCALATE, however clear it looks. For an
+  addition, ask the user with "without it" as one of the options.
   <!-- In the Yap link-card run (2026-11-09) a plan-review FIX added a
   download gate with no question. The gate then caused three code-review
   findings, two of them Major. A reviewer's fix gets no review of its own

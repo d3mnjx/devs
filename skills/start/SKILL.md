@@ -40,8 +40,6 @@ questions.
   stopped in the middle of a review would go on to the next stage and skip
   the cons and the escalations. -->
 
-Tell the user the first stage in one line, then load its skill.
-
 ### The small path
 
 Offer it when the change is small: the input already says what to change,
@@ -57,6 +55,8 @@ take the small path without the user's yes.
 <!-- The plan stays on the small path, because its `(agent)` decision list
 is the one check that does not depend on a model noticing something. What
 goes is the reviewer weight: see the note in review/SKILL.md, step 2. -->
+
+Tell the user the first stage in one line, then load its skill.
 
 ## 3. Run the chain
 
