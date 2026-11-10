@@ -88,6 +88,10 @@ How we know it works: which behavior gets a test, and which checks must pass.
 1. A rough order of work. Name files or modules when you know them.
 ```
 
+**Small path.** When `start` or the user chose the small path, add the line
+`Path: small` under the Source line. `start` and `review` read it. Never
+add it by yourself: the user decides what is small.
+
 The "Rejected" part of each decision is required. Reviewers and the step back
 agent judge trade-offs from it.
 
@@ -120,4 +124,5 @@ example TTL into a 24-hour refresh; the user was never asked, and saw it
 only in the built code. Do not drop the list to save a stop in the chain. -->
 
 Then load the `review` skill on the plan, unless the user asked for the plan
-only.
+only. On the small path, load the `implement` skill instead: the plan gets
+no review, and the list above is its only check.

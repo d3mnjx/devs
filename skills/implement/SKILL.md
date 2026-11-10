@@ -7,8 +7,8 @@ description: Build the feature described in .work/<feature>/plan.md, run the pro
 
 Find the feature folder in `.work/`. If more than one could match, ask which.
 `plan.md` is the source of truth; it works the same in this session or a fresh
-one. If `plan-review.md` ends with a **stop** verdict that the user did not
-overrule, say so and ask before you start.
+one. If `plan-review.md` ends with a CHANGE COURSE or STOP verdict that the
+user did not overrule, say so and ask before you start.
 
 ## 2. Prepare git
 

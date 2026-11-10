@@ -98,6 +98,35 @@ user sees only the judgment calls and a "step back" verdict.
   plan facts in `plan.md`. Rejected: a separate "audit" skill for merged
   commits (the review steps are the same).
 
+- **Step back review of devs** (added 2026-11-09, from the facts of the
+  three Yap runs: 6 rounds, 34 findings, 27 FIX, 0 CONTEST, 6 of 6 GO):
+  - **FIX only corrects or removes.** A fix that adds a mechanism, an
+    option, or a dependency is ESCALATE. Reason: a plan-review FIX added a
+    download gate that caused three code-review findings. Rejected: adding
+    it to the `(agent)` decision list (that list is shown before the
+    review, so a second list would be a second stop).
+  - **Step back remarks.** The step back output has a "Remarks" part, shown
+    to the user as written, together with the skeptic's cons. Reason: five
+    of six GO texts held a point that reached nobody. Rejected: without it
+    (the verdict alone lost "You can drop fix 5"); the main session picks
+    the remarks worth showing (it is a biased judge of them).
+  - **Small path.** `start` offers plan, implement, and one neutral
+    reviewer on the code, and takes it only on the user's yes. `plan.md`
+    carries `Path: small`. Reason: five nit fixes got 14 agents. Rejected:
+    without it (the user pays the full flow for 49 lines); the model picks
+    the path alone (a wrong "small" skips the plan review silently); no
+    plan on the small path (the `(agent)` decision list is the one check
+    that needs no model to notice something).
+  - **Status line.** `review` ends a round with `Status: done` after the
+    user's last answer, and `start` returns to a round without it. Reason:
+    the report file exists before the user answers. Rejected: without it
+    (an interrupted review skips the cons and the escalations).
+  - **Kept as it is:** the persona mix on a plan (detail personas and
+    larger-picture personas both run; the 2026-11-09 skeptic fills the gap
+    the Yap run showed); the harness-neutral rule (no Yap failure came from
+    it; drop it when a persona needs its own model); reports that cite
+    commits a later squash removes (the report holds the finding in words).
+
 ## Out of scope
 
 - Manifests for harnesses other than Claude Code.

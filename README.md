@@ -28,6 +28,11 @@ it asks what to work on. Each stage then loads the next one by itself. It
 stops only for your answers, a CHANGE COURSE or STOP verdict, or a failed
 build. It never merges or pushes.
 
+For a small change (a list of nits, a bug with a known cause), `start`
+offers the small path: plan, implement, and one neutral reviewer on the
+code, with no plan review and no step back. It takes that path only when
+you say yes.
+
 You can also start any stage alone with its command (`/devs:brainstorm`,
 `/devs:plan`, `/devs:review`, `/devs:implement`) or in plain words, for
 example "review this with security and minimalist". Say "only the review" to
@@ -71,15 +76,21 @@ flowchart LR
 - **Persona files** are in `skills/review/personas/`. Each has an "On a plan"
   and an "On code" section, plus "Tuning notes" for your own rules.
 - **Sorting.** The main session opens the cited code and labels each finding:
-  - FIX: right and clear, so it is applied.
+  - FIX: right and clear, so it is applied. A FIX only corrects or removes.
+    A fix that adds a mechanism, an option, or a dependency comes to you as
+    a question.
   - CONTEST: wrong, with evidence you can check.
   - ESCALATE: needs your judgment, so you get a question.
   - DECLINE: right but too small to matter.
 - **Step back.** One more fresh agent reads the plan and the findings and says
-  GO, CHANGE COURSE, or STOP.
-- **You see** the verdict, one count line, the skeptic's cons, and the
-  escalated questions one at a time. The details are in `.work/<feature>/plan-review.md` or
-  `code-review.md`.
+  GO, CHANGE COURSE, or STOP. It can add remarks: parts it would drop,
+  change, or check first, also on a GO. You see each remark as written and
+  you answer it.
+- **You see** the verdict, one count line, the skeptic's cons and the step
+  back remarks, and the escalated questions one at a time. The details are
+  in `.work/<feature>/plan-review.md` or `code-review.md`.
+- **Status.** A review round ends with a `Status: done` line after your last
+  answer. A round without it is not finished, and `start` returns to it.
 
 ## Coding principles
 

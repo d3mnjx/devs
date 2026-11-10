@@ -28,13 +28,20 @@ Rules:
   or STOP only when you can name the better option or the cost that
   outweighs the value.
 - Read the code or docs when you need a fact to judge.
+- A GO can still have a part that you would drop, change, or check first.
+  Do not fold such a point into "Why". Put it under "Remarks", with what it
+  costs to leave as it is. The user gets each remark as you wrote it and
+  answers it. "None" is a valid answer. Never invent a remark.
 
-Output, under 150 words:
+<!-- Why remarks are apart from "Why": see the note in ../SKILL.md, step 6. -->
+
+Output, under 200 words:
 
 ```
 Verdict: GO | CHANGE COURSE | STOP
 Why: <1 or 2 lines>
 Instead: <the alternative, only for CHANGE COURSE or STOP>
+Remarks: <"None", or at most 3 numbered points, each 1 or 2 lines>
 ```
 
 ## Tuning notes
