@@ -50,7 +50,8 @@ fixes, 49 lines in all, got a plan review and a code review with 8 agents,
 after 6 more for the review that found the nits. The full set of reviewers
 is for work that carries a design. -->
 
-Tell the user the list in one line, with the reason for each conditional one.
+Tell the user the list in one line, with the reason for each conditional one
+and the model the reviewers run on (see step 3).
 
 ## 3. Run the reviewers
 
@@ -58,6 +59,20 @@ Start one **fresh subagent per persona, in parallel**, with no chat history.
 Fresh context is the point: a reviewer that saw our conversation shares our
 blind spots. If your harness cannot start fresh subagents, stop and tell the
 user. Do not review in this session instead.
+
+**Model.** Run every reviewer on the model of this session, unless the user
+names another model for the reviewers. Name the model when you start the
+subagent, if your harness lets you; do not leave it to a default. A general
+rule to send subagent work to a cheaper model does not cover reviewers:
+their work is judgment, not mechanical work.
+
+<!-- In a Yap plan review (2026-11-12) a Fable session ran all seven
+reviewers on Opus. This skill named no model, so a workspace cost rule
+("send subagent work to a cheaper model") filled the gap, and the user saw
+it only after the round. There is no question to the user on purpose: the
+answer is nearly always "the same model", and the line in step 2 shows the
+model before the reviewers report. The report records the model because
+runs on unknown models do not compare (see test-cases/README.md). -->
 
 Give each reviewer this brief, and nothing from our conversation:
 
@@ -146,6 +161,7 @@ exists, append a new `# Round N` section; do not delete the old round.
 # Round 1 (YYYY-MM-DD)
 
 Reviewers: neutral, minimalist, skeptic, security (reason: parses uploaded files)
+Model: <the model the reviewers and the step back agent ran on>
 
 ## Step back
 Verdict: GO | CHANGE COURSE | STOP
@@ -176,9 +192,10 @@ round without that line as not finished.
 
 Start one more **fresh subagent** with `personas/step-back.md`. Give it the
 `plan.md` path (or the commit range), the report path, and for code the
-output of `git diff --stat` on the target. The rule from step 3 holds here
-too: add nothing about what is settled or what the user chose. Write its
-answer into the report's "Step back" section.
+output of `git diff --stat` on the target. The rules from step 3 hold here
+too: run it on the same model as the reviewers, and add nothing about what
+is settled or what the user chose. Write its answer into the report's "Step
+back" section.
 
 Treat its remarks like the skeptic's cons: copy each one as written, add
 your one-line "Agree" or "Disagree" answer under it, and change nothing for

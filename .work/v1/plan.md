@@ -58,7 +58,19 @@ user sees only the judgment calls and a "step back" verdict.
   talk where the model also brings options and opinions; grilling is its
   backbone. Rejected: separate `brainstorm` and `grill` commands (you must
   pick a style before you know what the session needs).
-- **Models**: none hardcoded; each role uses the session model.
+- **Models** (changed 2026-11-12): none hardcoded; each role uses the
+  session model. `review` now says so in its own text, tells the user the
+  model with the reviewer list, and writes it in the report. The user can
+  name another model in plain words. Reason: in a Yap plan review a Fable
+  session ran all seven reviewers on Opus; the skill was silent, and a
+  workspace cost rule ("send subagent work to a cheaper model") filled the
+  gap. Rejected: without it (the rule lived only in this file, which a
+  working session does not read); a question before each review (the answer
+  is nearly always "the same model", and `start` exists to cut questions);
+  a model field in each persona (no run shows that a persona does its job
+  better, or as well, on another model; all replays so far ran on Opus; and
+  model names belong to one harness and go out of date. The model line in
+  the report collects the data for this decision).
 - **Principles** (added 2026-11-06): `skills/principles.md` holds the user's
   coding principles. plan and implement carry an inline copy (changed
   2026-11-06: direct text is stronger than "read this file"); review pastes
@@ -131,7 +143,7 @@ user sees only the judgment calls and a "step back" verdict.
 
 - Manifests for harnesses other than Claude Code.
 - A `/ship` command (merge, push), `retro`, automatic review loops, a verify agent.
-- Model selection per persona.
+- Model selection per persona (see **Models** for the reason).
 
 ## Testing
 

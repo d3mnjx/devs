@@ -61,7 +61,8 @@ flowchart LR
     class stepback think
 ```
 
-- **Reviewers** run as fresh subagents with no chat history. `neutral` and
+- **Reviewers** run as fresh subagents with no chat history, on the same
+  model as your session unless you name another. `neutral` and
   `minimalist` always run. `security`, `performance`, and `ux` run when the
   change touches that area or when you ask.
 - **Skeptic.** One more fresh agent gets a single job: read the plan and
